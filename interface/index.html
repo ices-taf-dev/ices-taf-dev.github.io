@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../css/taf.css">
+<title>TAF - Web Interface</title>
+<body>
+
+<h1>TAF Web Interface</h1>
+
+<p><img src="../jpg/taf-chainring.jpg" alt="TAF logo" width="70">
+
+<h2>Design outline</h2>
+
+<p>The <a href="../index.html">TAF</a> web interface will allow users (EG, ADG,
+ACOM, Secretariat, others) to browse, upload, modify and run stock assessments
+online.
+
+<p>The URL will probably be:
+
+<blockquote>
+<code><a href="https://taf.ices.dk">https://taf.ices.dk</a></code>
+</blockquote>
+
+<p>Anyone can browse and download input/model/output files, but a username and
+password is required to upload, modify and run.
+
+<p>The web interface will not be the only TAF user interface. For example,
+without opening a web browser, users can download files directly into R, and
+perhaps upload files directly from R. The file types will include R scripts,
+model config files, and CSV tables.
+
+<h2>Layers</h2>
+
+<p>The user interface could be implemented in four layers:
+
+<ol>
+  <li style="margin-top:2ex"><strong>Welcome</strong> page<br>
+    <em>Info:</em> what TAF is about, how to use<br>
+    <em>Functions:</em> browse, log on
+  <li style="margin-top:2ex"><strong>Boss</strong> mode<br>
+    <em>Info:</em> list of stocks, TAF status of each stock<br>
+    <em>Functions:</em> select stock
+  <li style="margin-top:2ex"><strong>Stock</strong> mode<br>
+    <em>Info:</em> list of assessments for selected stock, TAF status of each
+    assessment<br>
+    <em>Functions:</em> select assessment
+  <li style="margin-top:2ex"><strong>Assessment</strong> mode<br>
+    <em>Info:</em> list of scripts, input data files, model config files, output
+    data files<br>
+    <em>Functions:</em> upload, modify, run, view SAG results, download CSV
+</ol>
+
+<p><a href="fig-boss.html">[Figure: Boss mode]</a>
+
+<p><a href="fig-assmt.html">[Figure: Assessment mode]</a>
+
+<h2>Notes</h2>
+
+<h3>Stock vs. assessment</h3>
+
+<p>For some stocks, there will be more than one assessment. These can be
+diagnostic runs that are considered relevant for ADG/ACOM, update assessment
+later in the year, etc.
+
+<p>In the four-layer design outlined above, the "Stock mode" has links to
+assessments for that stock. A relatively quiet page between two busy pages,
+"Boss mode" and "Assessment mode".
+
+<h3>TAF status</h3>
+
+<p>Within TAF, a stock assessment can be:
+
+<ol>
+  <li><em>Created:</em> directory has been created, no files have been modified
+    this year
+  <li><em>Started:</em> some files have been modified this year, but no results
+    have made it to SAG
+  <li><em>Complete:</em> SAG results have been generated this year, but can
+    still be updated
+  <li><em>Checked:</em> EG has indicated that this assessment is the final run
+  <li><em>Finalized:</em> ADG has finished advice sheet for this stock
+  <li><em>Published:</em> ACOM has given advice for this stock and results are
+    open to public
+</ol>
+
+<p>When more than one assessment exists for a given stock, the TAF status of
+that stock is the same as the highest status of any assessment for that stock.
+
+<h2>CSV data server</h2>
+
+<p>All CSV files (input and output tables) will be available to download
+directly into R.
+
+<h3>Plain directory tree</h3>
+
+<p>To make it easy for users to specify the desired data, it might be beneficial
+to have a URL that is easy for humans to understand, memorize, and type. For
+example, a plain directory tree where year is a directory with stocks as
+subdirectories:
+
+<blockquote>
+<code><a href="https://taf.ices.dk/csv/2017/cod-347d/catage.csv">
+https://taf.ices.dk/csv/2017/cod-347d/catage.csv</a></code>
+</blockquote>
+
+<p>In this way, CSV files could be downloaded into R using core R functionality,
+without the need of any packages:
+
+<blockquote>
+<code>read.csv("https://taf.ices.dk/csv/2017/cod-347d/catage.csv")</code>
+</blockquote>
+
+<p>If the CSV file server is used widely, both in scripts and interactive
+sessions, a shorter URL might be desired. For example:
+
+<blockquote>
+<code><a href="https://csv.ices.dk/2017/cod-347d/catage.csv">
+https://csv.ices.dk/2017/cod-347d/catage.csv</a></code>
+</blockquote>
+
+<p><a href="fig-csv.html">[Figure: CSV data server]</a>
+
+<h3>Web service</h3>
+
+<p>If a plain directory tree is not practical, a web service could be used:
+
+<blockquote>
+<code><a href="https://taf.ices.dk/csv/getcatage?stock=cod-347d&amp;year=2017">
+https://taf.ices.dk/csv/getcatage?stock=cod-347d&amp;year=2017</a></code>
+</blockquote>
+
+<p>Depending on the web service implementation, this might introduce R package
+dependencies to download and parse the data.
+
+<p><br><a href="../index.html">back</a>
