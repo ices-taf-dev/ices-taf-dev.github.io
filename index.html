@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/taf.css">
+<title>TAF - Transparent Assessment Framework</title>
+<body>
+
+<h1>Transparent Assessment Framework</h1>
+
+<p><img src="jpg/taf-chainring.jpg" alt="TAF logo" width="70">
+
+<h2>Aim</h2>
+
+<p>To implement a framework to organize <em>data</em>, <em>methods</em>, and
+<em>results</em> used in ICES assessments, so they are easy to <em>find</em> and
+<em>rerun</em> later with new data.
+
+<h2>System workflow</h2>
+
+<p style="margin-bottom:4ex"><a href="png/taf-diagram.png">
+<img src="png/taf-diagram.png" alt="TAF diagram" width="640"></a>
+
+<p>Each assessment is organized in folders db &rarr; input &rarr; model &rarr;
+output.<br>
+These folders contain R scripts and other files that perform the following
+tasks:
+
+<dl>
+  <dt><strong>db</strong>
+  <dd>read fine-resolution data, produce aggregated input data in standard CSV
+    format
+  <dt><strong>input</strong>
+  <dd>read CSV data, produce input data in model-specific format
+  <dt><strong>model</strong>
+  <dd>run model with input data, produce output data in model-specific format
+  <dt><strong>output</strong>
+  <dd>read output data in model-specific format, produce output in standard CSV
+    format
+</dl>
+
+<p>An assessment in TAF is a broad term for any analysis for a given stock,
+using R scripts and the above folder structure. So TAF assessments for a given
+stock can be analytical stock assessments, data-limited advisory procedures,
+forecasts, etc.
+
+<h2>Development</h2>
+
+<h3>GitHub repositories</h3>
+
+<dl>
+  <dt><a href="https://github.com/ices-tools-prod">ices-tools-prod</a>
+  <dd>software maintained by the ICES Secretariat
+  <dt><a href="https://github.com/ices-tools-dev">ices-tools-dev</a>
+  <dd>other software, scripts, etc.
+  <dt><a href="https://github.com/ices-taf">ices-taf</a>
+  <dd>TAF development area
+</dl>
+
+<h3>
+<a href="r.html" style="color:inherit;text-decoration:inherit">R packages</a>
+</h3>
+
+<p><em>Convenient R interface for ICES web services:</em>
+
+<dl>
+  <dt>
+    <a href="https://github.com/ices-tools-prod/icesDatras">icesDatras</a>
+    (<a href="https://cran.r-project.org/web/packages/icesDatras/">CRAN</a>)
+  <dd>trawl survey database
+  <dt>
+    <a href="https://github.com/ices-tools-prod/icesSAG">icesSAG</a>
+    (<a href="https://cran.r-project.org/web/packages/icesSAG/">CRAN</a>)
+  <dd>stock assessment graphs
+  <dt>
+    <a href="https://github.com/ices-tools-prod/icesSLD">icesSLD</a>
+  <dd>stock list database
+  <dt>
+    <a href="https://github.com/ices-tools-prod/icesVocab">icesVocab</a>
+  <dd>reference codes
+</dl>
+
+<h3>Web interface</h3>
+
+<a href="interface/index.html">Design outline</a> of web user interface
+
+<h2>Presentations</h2>
+
+<h3>2016</h3>
+
+<dl>
+  <dt>5 August
+  <dd>
+    <a href="pdf/2016-08-05-ices-seminar.pdf">TAF kickoff seminar</a>
+    (49 slides, with
+    <a href="https://github.com/ices-taf/demo/tree/master/isaithe2015">
+    demo</a>)
+  <dt>18 September
+  <dd><a href="pdf/2016-09-18-riga-acom-scicom.pdf">Riga ACOM+SCICOM session</a>
+    (19 slides)
+  <dt>21 September
+  <dd><a href="pdf/2016-09-21-riga-open.pdf">Riga open session</a> (23 slides)
+  <dt>3 November
+  <dd>
+    <a href="https://github.com/ices-tools-dev/webservicesDemo/blob/master/slides/webservices.pdf">
+    Web services seminar</a> (17 slides, with
+    <a href="https://github.com/ices-tools-dev/webservicesDemo/tree/master/examples">
+    demo</a>)
+</dl>
